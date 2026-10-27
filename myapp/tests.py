@@ -30,6 +30,7 @@ class ApiStatusTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
         self.assertEqual(response.json()["status"], "ok")
+        self.assertEqual(response.json()["version"], "1.0.0")
 
     def test_api_status_rejects_post(self):
         response = self.client.post(reverse("api_status"))
