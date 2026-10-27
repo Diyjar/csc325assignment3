@@ -22,3 +22,16 @@ class AboutViewTests(TestCase):
             "<h1>About Us</h1><p>This is the about page.</p>",
             html=True,
         )
+        
+class ApiStatusTests(TestCase):
+    def test_api_status_returns_json(self):
+        response = self.client.get(reverse("api_status"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "application/json")
+        self.assertEqual(response.json()["status"], "ok")
+
+    def test_api_status_rejects_post(self):
+        response = self.client.post(reverse("api_status"))
+
+        self.assertEqual(response.status_code, 405)
