@@ -22,7 +22,7 @@ class AboutViewTests(TestCase):
             "<h1>About Us</h1><p>This is the about page.</p>",
             html=True,
         )
-        
+
 class ApiStatusTests(TestCase):
     def test_api_status_returns_json(self):
         response = self.client.get(reverse("api_status"))
@@ -35,3 +35,10 @@ class ApiStatusTests(TestCase):
         response = self.client.post(reverse("api_status"))
 
         self.assertEqual(response.status_code, 405)
+
+class ApiHealthTests(TestCase):
+    def test_api_health_returns_true(self):
+        response = self.client.get(reverse("api_health"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"healthy": True})
