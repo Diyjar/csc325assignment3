@@ -12,7 +12,7 @@ def about(request):
 
 @api_view(["GET"])
 def api_status(request):
-    return Response({"status": "ok", "message": "CSC325 API is running"})
+    return Response({"status": "ok", "message": "CSC325 API is running", "version": "1.0.0"})
 
 @api_view(["GET"])
 def api_health(request):
